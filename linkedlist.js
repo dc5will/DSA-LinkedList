@@ -61,6 +61,8 @@ class LinkedList {
         // if the node to be removed is head, make the next node head
         if (this.head.value === item) {
             this.head = this.head.next;
+            console.log('this.head.value ===', this.head.value)
+            console.log('item ===', item)
             return;
         }
         // Start at the head
@@ -118,6 +120,30 @@ class LinkedList {
         console.log('checking insertAfter =', currNode.next) // 'Hotdog', 'Helo'
         return console.log(`Successfully added ${newNode}`)
     }
+
+    // implement a function called insertAt() that inserts an item at a specific position in the LL
+    insertAt(newNode, position) {
+        let currNode = this.head;
+        let prevNode = this.head;
+        if (!this.head) {
+            return null;
+        }
+        let counter = 0;
+        while (counter < position) {
+            // console.log('position =', position)
+            // console.log('counter =', counter)
+            if (currNode.next === null) {
+                return new Error('Linked list is not long enough');
+            } else {
+                prevNode = currNode;
+                currNode = currNode.next;
+            }
+            counter++;
+        }
+        prevNode.next = new _Node(newNode, currNode);
+        console.log('insertAt =', prevNode.next)
+        return console.log(`Successfully added ${newNode} at ${position}`);
+    }
 }
 
 // Write a function and use the LL class above to create a LL with the name SLL and add the following items to your linked list: Apollo, Boomer, Helo, Husker, Starbuck.
@@ -137,6 +163,8 @@ function main() {
     // Add Athena before Boomer using my insertBefore() function
     SLL.insertBefore('Athena', 'Boomer'); // function works
     SLL.insertAfter('Hotdog', 'Helo'); // function works
+    SLL.insertAt('Kat', 3); // TODO: basic functionaility works, but need to check for edge cases
+    SLL.remove('Apollo'); // TODO: revisit. Removing the incorrect nodes
     return SLL; 
     // run "node linkedlist.js" in terminal
 }
