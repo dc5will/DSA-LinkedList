@@ -80,7 +80,7 @@ class LinkedList {
         previousNode.next = currNode.next;
     }
 
-    // Implement a function called insertBefore() in the class that inserts a new node before a given node containing a key
+    // Implement a function called insertBefore() in the class that inserts a new node before a given node containing a key. O(n) operation because it has to iterate through the LL to match target value.
     insertBefore(newNode, value) {
         let currNode = this.head;
         let prevNode = this.head;
@@ -95,7 +95,27 @@ class LinkedList {
                 currNode = currNode.next;
             }
         }
-        prevNode.next = new _Node(newNode, currNode);
+        prevNode.next = new _Node(newNode, currNode); // inserting new node AFTER prev node
+        return console.log(`Successfully added ${newNode}`)
+    }
+
+    // implement a function called insertAfter() in the class that inserts a new node after a node containg the key
+    insertAfter(newNode, value) {
+        let currNode = this.head;
+        let prevNode = this.head;
+        if (!this.head) {
+            return null;
+        }
+        while (currNode.value !== value) {
+            if (currNode.next === null) {
+                return new Error('Not Found');
+            } else {
+                prevNode = currNode;
+                currNode = currNode.next;
+            }
+        }
+        currNode.next = new _Node(newNode, currNode); // inserting new node AFTER current node
+        console.log('checking insertAfter =', currNode.next) // 'Hotdog', 'Helo'
         return console.log(`Successfully added ${newNode}`)
     }
 }
@@ -116,6 +136,7 @@ function main() {
     SLL.remove('squirrel'); // returned "Item not found" in console. Working as intended.
     // Add Athena before Boomer using my insertBefore() function
     SLL.insertBefore('Athena', 'Boomer'); // function works
+    SLL.insertAfter('Hotdog', 'Helo'); // function works
     return SLL; 
     // run "node linkedlist.js" in terminal
 }
