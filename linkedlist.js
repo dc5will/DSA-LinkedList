@@ -146,6 +146,39 @@ class LinkedList {
     }
 }
 
+// Supplemental functions for a linked list
+
+// create a free function that displays the linked list
+function display(ll) { 
+    let node = ll.head;
+    while (node !== null) { // iterate through ll as long as node isnt node
+        console.log('node === ', node)
+        node = node.next;
+    }
+}
+
+// create a function that returns the size of the linked list
+function size(ll) {
+    let node = ll.head;
+    let count = 0; // variable to count how many nodes are in LL
+    while (node !== null) {
+        count++; // increment count after each pass
+        node = node.next; // move ptr to next node 
+    }
+    console.log('size ===', count)
+    return count;
+}
+
+let SLL = new LinkedList();
+SLL.insertLast('Pikachu');
+SLL.insertLast('Charmander');
+SLL.insertLast('Bulbasaur');
+SLL.insertLast('Squirtle');
+display(SLL); // returned each node in correct order
+size(SLL); // output: 
+
+
+
 // Write a function and use the LL class above to create a LL with the name SLL and add the following items to your linked list: Apollo, Boomer, Helo, Husker, Starbuck.
 function main() {
     // create new LL named SLL
