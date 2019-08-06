@@ -80,6 +80,24 @@ class LinkedList {
         previousNode.next = currNode.next;
     }
 
+    // Implement a function called insertBefore() in the class that inserts a new node before a given node containing a key
+    insertBefore(newNode, value) {
+        let currNode = this.head;
+        let prevNode = this.head;
+        if (!this.head) {
+            return null; // if LL is empty return null;
+        }
+        while (currNode.value !== value) { // iterate through LL to check if current node matches target value
+            if (currNode.next === null) { // when it reaches end of the list return message
+                return new Error('Not Found');
+            } else { // otherwise, move the pointer
+                prevNode = currNode; 
+                currNode = currNode.next;
+            }
+        }
+        prevNode.next = new _Node(newNode, currNode);
+        return console.log(`Successfully added ${newNode}`)
+    }
 }
 
 // Write a function and use the LL class above to create a LL with the name SLL and add the following items to your linked list: Apollo, Boomer, Helo, Husker, Starbuck.
@@ -92,10 +110,14 @@ function main() {
     SLL.insertLast('Helo');
     SLL.insertLast('Husker');
     SLL.insertLast('Starbuck');
-    // Add William to the list
+    // Add William to the SLL
     SLL.insertLast('William');
+    // remove squirrel from list
+    SLL.remove('squirrel'); // returned "Item not found" in console. Working as intended.
+    // Add Athena before Boomer using my insertBefore() function
+    SLL.insertBefore('Athena', 'Boomer'); // function works
     return SLL; 
-    // run "node linkedlist.js" in terminal to see node
+    // run "node linkedlist.js" in terminal
 }
 
 console.log(main());
