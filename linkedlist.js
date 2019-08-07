@@ -216,6 +216,31 @@ function findLast(ll) {
     return node.value;
 }
 
+// Write an algorithm to reverse a LL. The time complexity of your algorithm should be linear (O(n)). All pointers should point backward.
+
+function reverseList(ll) {
+    if (ll.head === null) {
+        return null;
+    }
+    let current = ll.head; // set variables with default values
+    let previous = null;
+    let next = null;
+    while (current !== null) { // iterate through list as long as head is not null
+        console.log('next ===', current.next);
+        next = current.next; // set next node value pointer to next node
+        console.log('current.next ===', previous)
+        current.next = previous; // reversing pointer from next to prev
+        console.log('previous ===', current)
+        previous = current; 
+        console.log('current ===', next)
+        current = next;
+    }
+    console.log('ll.head', previous)
+    ll.head = previous;
+    console.log('ll ===', ll);
+    return ll;
+}
+
 let SLL = new LinkedList();
 SLL.insertLast('Pikachu');
 SLL.insertLast('Charmander');
@@ -226,7 +251,7 @@ size(SLL); // output: 4
 isEmpty(SLL); // true and false conditions both work
 findPrevious(SLL, 'Charmander'); // TODO: edge case for finding prevNode of first item
 findLast(SLL); // works as intended
-
+reverseList(SLL);
 
 
 // Write a function and use the LL class above to create a LL with the name SLL and add the following items to your linked list: Apollo, Boomer, Helo, Husker, Starbuck.
@@ -252,4 +277,14 @@ function main() {
     // run "node linkedlist.js" in terminal
 }
 
-console.log(main());
+// console.log(main());
+
+
+module.exports = {
+    LinkedList,
+    display,
+    size,
+    isEmpty,
+    findPrevious,
+    findLast,
+}
