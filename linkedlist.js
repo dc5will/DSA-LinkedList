@@ -169,13 +169,48 @@ function size(ll) {
     return count;
 }
 
+// create function to find if the list is empty or not (without using size() function)
+function isEmpty(ll) {
+    let node = ll.head;
+    if (node === null) {
+        console.log(true, 'LL is empty');
+        return true; 
+    } else {
+        console.log(false, 'LL is not empty');
+        return false; 
+    }
+}
+
+// create function that finds the node before the item you are looking for
+function findPrevious(ll, value) {
+    let currNode = ll.head;
+    let prevNode = ll.head;
+    if (!ll.head) { // if list is empty, return null
+        console.log('list is empty')
+        return null;
+    }
+    while (currNode.value !== value) {
+        if (currNode.next === null || prevNode === null) {
+            console.log('previous node doesnt exist')
+            return null;
+        } else {
+            prevNode = currNode;
+            currNode = currNode.next;
+        }
+    }
+    console.log('findPrevious ===', prevNode.value)
+    return prevNode.value;
+}
+
 let SLL = new LinkedList();
 SLL.insertLast('Pikachu');
 SLL.insertLast('Charmander');
 SLL.insertLast('Bulbasaur');
 SLL.insertLast('Squirtle');
 display(SLL); // returned each node in correct order
-size(SLL); // output: 
+size(SLL); // output: 4
+isEmpty(SLL); // true and false conditions both work
+findPrevious(SLL, 'Charmander'); // TODO: edge case for finding prevNode of first item
 
 
 
