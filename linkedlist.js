@@ -226,33 +226,50 @@ function reverseList(ll) {
     let previous = null;
     let next = null;
     while (current !== null) { // iterate through list as long as head is not null
-        console.log('next ===', current.next);
+        // console.log('next ===', current.next);
         next = current.next; // set next node value pointer to next node
-        console.log('current.next ===', previous)
+        // console.log('current.next ===', previous)
         current.next = previous; // reversing pointer from next to prev
-        console.log('previous ===', current)
+        // console.log('previous ===', current)
         previous = current; 
-        console.log('current ===', next)
+        // console.log('current ===', next)
         current = next;
     }
-    console.log('ll.head', previous)
+    // console.log('ll.head', previous)
     ll.head = previous;
-    console.log('ll ===', ll);
+    // console.log('ll ===', ll);
     return ll;
 }
 
+// Write an algorithm to find the 3rd element from the end of the LL. (Don't use length property)
+
+function thirdFromTheEnd(ll) {
+    // input = 1, 2, 3, 4
+    // output = 2
+    let currentNode = ll.head;
+    console.log('currentNode ===', currentNode)
+    while (currentNode.next.next.next !== null) { // as long as there are 3 nodes ahead of currentNode, iterate and set pointer down the list
+        // console.log('currentNode ===', currentNode.next)
+        currentNode = currentNode.next;
+    }
+    // break out of loop and return value of current node which should be the third from the end
+    console.log('currentNode ===', currentNode)
+    return currentNode;
+}
+
+
 let SLL = new LinkedList();
-SLL.insertLast('Pikachu');
-SLL.insertLast('Charmander');
-SLL.insertLast('Bulbasaur');
-SLL.insertLast('Squirtle');
+SLL.insertLast('First Item');
+SLL.insertLast('Second Item');
+SLL.insertLast('Third Item');
+SLL.insertLast('Last Item');
 display(SLL); // returned each node in correct order
 size(SLL); // output: 4
 isEmpty(SLL); // true and false conditions both work
-findPrevious(SLL, 'Charmander'); // TODO: edge case for finding prevNode of first item
+findPrevious(SLL, 'Second Item'); // TODO: edge case for finding prevNode of first item
 findLast(SLL); // works as intended
-reverseList(SLL);
-
+// reverseList(SLL); // works as intended
+thirdFromTheEnd(SLL); // TODO: works but need to look at edge cases
 
 // Write a function and use the LL class above to create a LL with the name SLL and add the following items to your linked list: Apollo, Boomer, Helo, Husker, Starbuck.
 function main() {
