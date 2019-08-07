@@ -202,6 +202,20 @@ function findPrevious(ll, value) {
     return prevNode.value;
 }
 
+// implement findLast function that returns the last node in the LL
+function findLast(ll) {
+    let node = ll.head;
+    if (!node) {
+        console.log('LL is empty')
+        return null;
+    }
+    while (node.next !== null) {
+        node = node.next
+    }
+    console.log('findLast node === ', node.value)
+    return node.value;
+}
+
 let SLL = new LinkedList();
 SLL.insertLast('Pikachu');
 SLL.insertLast('Charmander');
@@ -211,6 +225,7 @@ display(SLL); // returned each node in correct order
 size(SLL); // output: 4
 isEmpty(SLL); // true and false conditions both work
 findPrevious(SLL, 'Charmander'); // TODO: edge case for finding prevNode of first item
+findLast(SLL); // works as intended
 
 
 
