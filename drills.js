@@ -1,6 +1,8 @@
 'use strict';
 
 const { LinkedList, display, size, isEmpty, findPrevious } = require('./linkedlist');
+const { DLinkedList, reverseDList } = require('./dlinkedlist');
+
 
 // Analyze the following function (without running it in an IDE) to determine what problem it is trying to solve. What is the time complexity of this algorithm?
 
