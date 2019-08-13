@@ -23,7 +23,7 @@ function WhatDoesThisProgramDo(lst) {
 } // O(n^2) time complexity because it iterates through the list twice (nested while loop). This program iterates through a list and checks for the current node's value for duplicates to the next node. If they are the same, it will SKIP past it and continue down the list
 
 
-
+//====================== SLL ============================
 function main() {
     const SLL = new LinkedList;
     SLL.insertBefore('Iron Man');
@@ -34,3 +34,21 @@ function main() {
 }
 
 main();
+
+//====================== DLL ============================
+function mainDLL() {
+    const DLL = new DLinkedList();
+    DLL.insertFirst('Aquaria')
+    DLL.insertLast('Caprica')
+    DLL.insertLast('Gemenon')
+    DLL.insertLast('Picon')
+    DLL.insertLast('Sagittaron')
+
+    // TODO: Add Tauron && Remove Picon
+    DLL.insertLast('Tauron')
+    DLL.remove('Picon')
+    display(DLL);
+    reverseDList(DLL);
+}
+
+mainDLL();
