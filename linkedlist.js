@@ -93,7 +93,7 @@ class LinkedList {
             if (currNode.next === null) { // when it reaches end of the list return message
                 return new Error('Not Found');
             } else { // otherwise, move the pointer
-                prevNode = currNode; 
+                prevNode = currNode;
                 currNode = currNode.next;
             }
         }
@@ -149,7 +149,7 @@ class LinkedList {
 // Supplemental functions for a linked list
 
 // create a free function that displays the linked list
-function display(ll) { 
+function display(ll) {
     let node = ll.head;
     while (node !== null) { // iterate through ll as long as node isnt node
         console.log('node === ', node)
@@ -174,10 +174,10 @@ function isEmpty(ll) {
     let node = ll.head;
     if (node === null) {
         console.log(true, 'LL is empty');
-        return true; 
+        return true;
     } else {
         console.log(false, 'LL is not empty');
-        return false; 
+        return false;
     }
 }
 
@@ -231,7 +231,7 @@ function reverseList(ll) {
         // console.log('current.next ===', previous)
         current.next = previous; // reversing pointer from next to prev
         // console.log('previous ===', current)
-        previous = current; 
+        previous = current;
         // console.log('current ===', next)
         current = next;
     }
@@ -257,19 +257,67 @@ function thirdFromTheEnd(ll) {
     return currentNode;
 }
 
+// ======= Write an algo to find the middle element of a LL =========
+// TODO: Write an algorithm to find the middle element of a linked list. Note You may be tempted to add a length property to your linked list class. The length property is not a typical property of linked list, therefore don't make any modification to the linked list class that is provided to you. Also, finding the size of the linked list using the size() function and dividing it by half will not find the correct middle of the linked list. So, don't use either of these approaches.
+
+function middleOfList(ll) {
+    const middle = Math.ceil(size(ll) / 2);
+    console.log('middle =', middle);
+    let counter = 0;
+    let currNode = ll.head;
+    let prevNode = ll.head;
+    while (counter < middle) {
+        if (currNode.next === null) {
+            return new Error('Linked list not long enough');
+        } else {
+            prevNode = currNode;
+            currNode = currNode.next;
+        }
+        counter++;
+    }
+    console.log('middleOfList =', prevNode);
+    return prevNode;
+}
+
+// ============= Cycle in a list ==================
+// TODO: Write an algorithm to find whether a linked list has a cycle (i.e., whether a node in the list has its next value pointing to an earlier node in the list). For this exercise, create a linked list with the name CycleList. Be sure to insert nodes in the list so that it has a cycle. Then test your program with a cycleList function.
+
+function cycleList(ll) {
+    // base case
+    if (!ll.head) { // if list is empty return null
+        return null;
+    }
+    let current = ll.head;
+    let fastCounter = ll.head;
+    do {
+        if (fastCounter.next !== null && fastCounter.next.next !== null) {
+            fastCounter = fastCounter.next.next;
+        } else {
+            console.log('cycleList =', false)
+            return false;
+        }
+        current = current.next;
+    } while (fastCounter.value !== current.value);
+    console.log('cycleList =', true)
+    return true;
+}
 
 let SLL = new LinkedList();
 SLL.insertLast('First Item');
 SLL.insertLast('Second Item');
+SLL.insertLast('Middle Item'); // added to test middleOfList function
 SLL.insertLast('Third Item');
-SLL.insertLast('Last Item');
-display(SLL); // returned each node in correct order
-size(SLL); // output: 4
-isEmpty(SLL); // true and false conditions both work
-findPrevious(SLL, 'Second Item'); // TODO: edge case for finding prevNode of first item
-findLast(SLL); // works as intended
-// reverseList(SLL); // works as intended
-thirdFromTheEnd(SLL); // TODO: works but need to look at edge cases
+SLL.insertLast('Fourth Item');
+display(SLL); // returned each node in correct order - O(n)
+size(SLL); // output: 4 - O(n)
+isEmpty(SLL); // true and false conditions both work - O(1)
+findPrevious(SLL, 'Second Item'); // TODO: edge case for finding prevNode of first item - O(n)
+findLast(SLL); // works as intended - O(n)
+reverseList(SLL); // works as intended - O(n)
+thirdFromTheEnd(SLL); // TODO: works but need to look at edge cases - O(n)
+middleOfList(SLL); // returns 'Middle Item' - O(n)
+cycleList(SLL); // returns false - O(n)
+
 
 // Write a function and use the LL class above to create a LL with the name SLL and add the following items to your linked list: Apollo, Boomer, Helo, Husker, Starbuck.
 function main() {
@@ -290,7 +338,7 @@ function main() {
     SLL.insertAfter('Hotdog', 'Helo'); // function works
     SLL.insertAt('Kat', 3); // TODO: basic functionaility works, but need to check for edge cases
     SLL.remove('Apollo'); // TODO: revisit. Removing the incorrect nodes
-    return SLL; 
+    return SLL;
     // run "node linkedlist.js" in terminal
 }
 
